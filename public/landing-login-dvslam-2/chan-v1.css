@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2px 0 3px;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 30px 30px 0 0;
+    z-index: 10000;
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+#bottom-bar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #8a8d93;
+    font-size: 0.65rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    flex: 1;
+    padding: 5px 0;
+    position: relative;
+    overflow: visible;
+}
+
+#bottom-bar a i {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, #8a8d93 0%, #8a8d93 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#bottom-bar a span {
+    font-size: 0.6rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+/* Active state with modern indicator */
+#bottom-bar a.active {
+    color: #6a93ff;
+}
+
+#bottom-bar a.active i {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: translateY(-6px) scale(1.15);
+    filter: drop-shadow(0 3px 8px rgba(106, 17, 203, 0.3));
+}
+
+#bottom-bar a.active span {
+    color: #6a11cb;
+    font-weight: 600;
+    transform: translateY(2px);
+}
+
+#bottom-bar a.active::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    border-radius: 50%;
+    z-index: 3;
+    animation: navDotBounce 0.6s ease-out;
+}
+
+#bottom-bar a.active::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, rgba(106, 17, 203, 0.1) 0%, rgba(37, 117, 252, 0.1) 100%);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0;
+    animation: navRipple 1.5s infinite;
+}
+
+#bottom-bar a:hover {
+    color: #6a93ff;
+}
+
+#bottom-bar a:hover i {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #6a93ff 0%, #2575fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#bottom-bar a:hover span {
+    color: #6a93ff;
+}
+@keyframes navDotBounce {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(-50%) translateY(-4px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes navRipple {
+    0% {
+        transform: translateX(-50%) scale(0.8);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(-50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+#bottom-popup {
+    position: fixed;
+    bottom: 75px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 350px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(106, 17, 203, 0.3);
+    z-index: 9999; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: popupSlideUp 0.5s ease-out;
+}
+@keyframes popupSlideUp {
+    0% {
+        transform: translateX(-50%) translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (min-width: 769px) {
+    #bottom-bar {
+        display: none;
+    }
+    
+    #bottom-popup {
+        display: none;
+    }
+    
+    body {
+        padding-bottom: 0;
+    }
+    
+    .main-content {
+        padding-bottom: 0;
+        min-height: auto;
+    }
+    
+    .desktop-notice {
+        display: block;
+        text-align: center;
+        background: #ffeaa7;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 20px 0;
+        font-weight: bold;
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-notice {
+        display: none;
+    }
+}

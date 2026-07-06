@@ -1,0 +1,328 @@
+/* Reset và biến cơ bản */
+#bottom-bar,
+#bottom-bar * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Ẩn hoàn toàn trên desktop */
+@media (min-width: 769px) {
+    #bottom-bar {
+        display: none !important;
+    }
+}
+
+/* Light theme - mặc định */
+#bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    width: 100%;
+    max-width: 500px;
+    height: 72px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 0 16px;
+    z-index: 9999;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 24px 24px 0 0;
+    overflow: hidden;
+    touch-action: manipulation;
+    pointer-events: auto;
+    will-change: transform;
+}
+
+/* Bo góc đẹp cho các trạng thái */
+#bottom-bar.compact {
+    height: 60px;
+    width: 92%;
+    max-width: 460px;
+    bottom: 8px;
+    border-radius: 24px; /* Bo góc đều 4 cạnh */
+    padding: 8px 0 12px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 
+        0 -2px 15px rgba(0, 0, 0, 0.1),
+        0 6px 20px rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Ẩn hoàn toàn khi scroll xuống sâu */
+#bottom-bar.hidden {
+    transform: translateX(-50%) translateY(100%);
+}
+
+/* Hiệu ứng wave trên đầu */
+#bottom-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(59, 130, 246, 0.4), 
+        rgba(139, 92, 246, 0.4),
+        rgba(59, 130, 246, 0.4),
+        transparent);
+    animation: waveMove 4s linear infinite;
+    z-index: 1;
+}
+
+@keyframes waveMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(33.33%); }
+}
+
+/* Navigation items với bo góc */
+#bottom-bar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #64748b;
+    font-size: 0.65rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1;
+    padding: 6px 0;
+    position: relative;
+    z-index: 2;
+    font-weight: 500;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 10px;
+    margin: 0 2px;
+}
+
+/* Hiệu ứng hover với bo góc */
+#bottom-bar a:hover {
+    background: rgba(59, 130, 246, 0.05);
+}
+
+#bottom-bar a i {
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #4a5568;
+    font-weight: normal;
+}
+
+#bottom-bar a span {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #1a202c;
+}
+
+/* Active state với animation đẹp */
+#bottom-bar a.active {
+    color: #3182ce;
+    animation: activeItem 0.3s ease-out;
+}
+
+@keyframes activeItem {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+    100% { transform: translateY(0); }
+}
+
+#bottom-bar a.active i {
+    color: #3182ce;
+    transform: translateY(-4px) scale(1.1);
+    filter: drop-shadow(0 2px 4px rgba(49, 130, 206, 0.2));
+    animation: iconFloat 2s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { 
+        transform: translateY(-4px) scale(1.1); 
+    }
+    50% { 
+        transform: translateY(-6px) scale(1.15); 
+    }
+}
+
+#bottom-bar a.active span {
+    color: #3182ce;
+    font-weight: 700;
+    animation: textGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 0 rgba(49, 130, 206, 0); }
+    50% { text-shadow: 0 0 3px rgba(49, 130, 206, 0.3); }
+}
+
+/* Dot indicator với bo tròn */
+#bottom-bar a.active::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background: #3182ce;
+    border-radius: 50%;
+    z-index: 3;
+    animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { 
+        transform: translateX(-50%) scale(1); 
+        opacity: 1;
+        box-shadow: 0 0 0 rgba(49, 130, 206, 0.4);
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.5); 
+        opacity: 0.8;
+        box-shadow: 0 0 10px rgba(49, 130, 206, 0.6);
+    }
+}
+
+/* Hover effects với chuyển động mượt */
+@media (hover: hover) {
+    #bottom-bar a:hover {
+        color: #3182ce;
+        transform: translateY(-2px);
+    }
+    
+    #bottom-bar a:hover i {
+        transform: translateY(-2px);
+        color: #3182ce;
+        animation: none;
+    }
+}
+
+/* Compact mode - ẩn text với animation */
+#bottom-bar.compact a span {
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#bottom-bar.compact a i {
+    margin-bottom: 0;
+}
+
+#bottom-bar.compact a.active i {
+    transform: translateY(-2px) scale(1.05);
+    animation: compactIconFloat 2s ease-in-out infinite;
+}
+
+@keyframes compactIconFloat {
+    0%, 100% { transform: translateY(-2px) scale(1.05); }
+    50% { transform: translateY(-3px) scale(1.08); }
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    #bottom-bar {
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+    }
+    
+    #bottom-bar.compact {
+        width: 90%;
+        border-radius: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    #bottom-bar {
+        height: 68px;
+        padding: 10px 0 14px;
+        border-radius: 18px 18px 0 0;
+    }
+    
+    #bottom-bar.compact {
+        height: 56px;
+        width: 92%;
+        bottom: 6px;
+        border-radius: 20px;
+        padding: 6px 0 10px;
+    }
+    
+    #bottom-bar a {
+        border-radius: 8px;
+        margin: 0 1px;
+    }
+    
+    #bottom-bar a i {
+        font-size: 1.15rem;
+    }
+    
+    #bottom-bar a span {
+        font-size: 0.55rem;
+    }
+}
+
+/* Dark theme với bo góc tương tự */
+body.dark-mode #bottom-bar,
+html.dark-mode #bottom-bar {
+    background: rgba(26, 32, 44, 0.92);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode #bottom-bar.compact,
+html.dark-mode #bottom-bar.compact {
+    background: rgba(26, 32, 44, 0.85);
+}
+
+body.dark-mode #bottom-bar a {
+    color: #a0aec0;
+}
+
+body.dark-mode #bottom-bar a:hover {
+    background: rgba(96, 165, 250, 0.05);
+}
+
+body.dark-mode #bottom-bar a i {
+    color: #e2e8f0;
+}
+
+body.dark-mode #bottom-bar a span {
+    color: #f7fafc;
+}
+
+body.dark-mode #bottom-bar a.active {
+    color: #63b3ed;
+}
+
+body.dark-mode #bottom-bar a.active i {
+    color: #63b3ed;
+    filter: drop-shadow(0 2px 4px rgba(99, 179, 237, 0.2));
+}
+
+body.dark-mode #bottom-bar a.active span {
+    color: #63b3ed;
+}
+
+body.dark-mode #bottom-bar a.active::before {
+    background: #63b3ed;
+}
+
+body.dark-mode #bottom-bar::before {
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(96, 165, 250, 0.4), 
+        rgba(167, 139, 250, 0.4),
+        rgba(96, 165, 250, 0.4),
+        transparent);
+}

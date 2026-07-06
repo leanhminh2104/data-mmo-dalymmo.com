@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="150" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .horse-body { fill: #8B4513; }
+    .mane-tail { fill: #5D2906; }
+    .eye { fill: #000; }
+    .hoof { fill: #333; }
+    .markings { fill: #D2B48C; }
+  </style>
+  
+  <!-- Thân ngựa -->
+  <ellipse class="horse-body" cx="100" cy="80" rx="60" ry="40"/>
+  
+  <!-- Đầu ngựa -->
+  <ellipse class="horse-body" cx="160" cy="60" rx="25" ry="20"/>
+  
+  <!-- Tai -->
+  <path class="horse-body" d="M175 45 L180 35 L185 45 Z"/>
+  <path class="horse-body" d="M165 45 L170 35 L175 45 Z"/>
+  
+  <!-- Mắt -->
+  <circle class="eye" cx="170" cy="58" r="3"/>
+  
+  <!-- Bờm -->
+  <path class="mane-tail" d="M135 50 Q145 30 155 50 Q145 40 135 50"/>
+  <path class="mane-tail" d="M130 55 Q140 35 150 55 Q140 45 130 55"/>
+  
+  <!-- Chân trước -->
+  <rect class="hoof" x="85" y="110" width="10" height="25"/>
+  <rect class="hoof" x="105" y="105" width="10" height="30"/>
+  
+  <!-- Chân sau -->
+  <rect class="hoof" x="135" y="105" width="10" height="30"/>
+  <rect class="hoof" x="155" y="110" width="10" height="25"/>
+  
+  <!-- Đuôi -->
+  <path class="mane-tail" d="M45 85 Q30 70 40 100 Q25 90 45 105 Q30 110 50 115" 
+        stroke="#5D2906" stroke-width="2" fill="none"/>
+  
+  <!-- Đốm trang trí -->
+  <circle class="markings" cx="110" cy="75" r="8"/>
+  <circle class="markings" cx="90" cy="85" r="6"/>
+</svg>

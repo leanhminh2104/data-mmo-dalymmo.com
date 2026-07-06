@@ -1,0 +1,106 @@
+/* CSS cho Landing Mặc định */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+.main_header {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+#herobaner_v2 {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+}
+.tpbanner__title h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: #102a43;
+    margin-bottom: 20px;
+}
+.tpbanner__title p {
+    font-size: 1.1rem;
+    color: #486581;
+    margin-bottom: 30px;
+}
+#whyChooseUs {
+    padding: 80px 0;
+    background-color: #fff;
+}
+.title_big {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #102a43;
+    margin-bottom: 20px;
+}
+#benifits {
+    padding: 80px 0;
+    background-color: #f0f4f8;
+}
+.title_mid {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #102a43;
+    margin-bottom: 10px;
+}
+.title_txt {
+    color: #486581;
+    margin-bottom: 40px;
+}
+#timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+#timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #d9e2ec;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+.timeline_item_wrap {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+.time_line_left {
+    left: 0;
+}
+.time_line_right {
+    left: 50%;
+}
+.timeline_item {
+    padding: 20px 30px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.timeline_item h3 {
+    margin-top: 15px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #102a43;
+}
+.timeline_item p {
+    color: #627d98;
+}
+#rise {
+    padding: 80px 0;
+    background-color: #fff;
+}
+.rise_content p {
+    color: #486581;
+    font-size: 1.1rem;
+}
+.copy-right {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #d9e2ec;
+    margin-top: 40px;
+    color: #627d98;
+}
